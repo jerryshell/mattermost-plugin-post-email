@@ -12,9 +12,9 @@ var manifest *model.Manifest
 
 const manifestStr = `
 {
-  "id": "com.mattermost.plugin-starter-template",
-  "name": "Plugin Starter Template",
-  "description": "This plugin serves as a starting point for writing a Mattermost plugin.",
+  "id": "io.github.jerryshell.mattermost-plugin-post-email",
+  "name": "Post Email",
+  "description": "Send Post To Email",
   "version": "0.1.0",
   "min_server_version": "5.12.0",
   "server": {
@@ -31,7 +31,40 @@ const manifestStr = `
   "settings_schema": {
     "header": "",
     "footer": "",
-    "settings": []
+    "settings": [
+      {
+        "key": "SMTP_SERVER",
+        "display_name": "SMTP Server",
+        "type": "text",
+        "help_text": "",
+        "placeholder": "",
+        "default": "smtp.gmail.com"
+      },
+      {
+        "key": "SMTP_SERVER_PORT",
+        "display_name": "SMTP Server Port",
+        "type": "text",
+        "help_text": "",
+        "placeholder": "",
+        "default": "587"
+      },
+      {
+        "key": "SMTP_SERVER_USERNAME",
+        "display_name": "SMTP Server Username",
+        "type": "text",
+        "help_text": "",
+        "placeholder": "",
+        "default": ""
+      },
+      {
+        "key": "SMTP_SERVER_PASSWORD",
+        "display_name": "SMTP Server Password",
+        "type": "text",
+        "help_text": "",
+        "placeholder": "",
+        "default": ""
+      }
+    ]
   }
 }
 `

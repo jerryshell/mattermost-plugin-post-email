@@ -1,4 +1,6 @@
 dist/
+deploy.sh
+deploy-dev.sh
 
 # Mac
 .DS_Store
