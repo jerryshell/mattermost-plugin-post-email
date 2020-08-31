@@ -62,7 +62,6 @@
     "webpack-cli": "3.3.12"
   },
   "dependencies": {
-    "axios": "0.20.0",
     "core-js": "3.6.5",
     "mattermost-redux": "5.26.0",
     "react": "16.13.1",

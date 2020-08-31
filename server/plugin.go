@@ -61,14 +61,6 @@ func (p *Plugin) handleSendEmail(content *plugin.Context, w http.ResponseWriter,
 		return
 	}
 
-	// debug
-	//requestJson, err := json.Marshal(request)
-	//if err != nil {
-	//	_, _ = fmt.Fprint(w, err)
-	//	return
-	//}
-	//_, _ = fmt.Fprint(w, string(requestJson))
-
 	auth := smtp.PlainAuth("", p.configuration.SmtpServerUsername, p.configuration.SmtpServerPassword, p.configuration.SmtpServer)
 
 	to := request.To
@@ -84,10 +76,11 @@ func (p *Plugin) handleSendEmail(content *plugin.Context, w http.ResponseWriter,
 
 // ServeHTTP demonstrates a plugin that handles HTTP requests by greeting the world.
 func (p *Plugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.Request) {
-	//if len(strings.TrimSpace(c.SessionId)) <= 0 {
-	//	_, _ = fmt.Fprint(w, "len(c.SessionId) <= 0")
-	//	return
-	//}
+	userID := r.Header.Get("Mattermost-User-ID")
+	if userID == "" {
+		http.Error(w, "Not authorized", http.StatusUnauthorized)
+		return
+	}
 
 	path := r.URL.Path
 	if path == "/sendEmail" {

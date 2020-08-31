@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {CLOSE} from '../../action_types';
-import Axios from 'axios';
 import {Client4} from 'mattermost-redux/client';
 import {id as pluginId} from '../../manifest';
 
@@ -69,7 +68,10 @@ export const Root = () => {
         };
         console.debug('handleSendClick data', data);
 
-        Axios.post(`/plugins/${pluginId}/sendEmail`, data).then((response) => {
+        fetch(`/plugins/${pluginId}/sendEmail`, Client4.getOptions({
+            method: 'post',
+            body: JSON.stringify(data),
+        })).then((response) => {
             console.debug('handleSendClick response', response);
         });
 
